@@ -71,10 +71,6 @@
                         <a href="{{ url('/home') }}">Home</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
                     @endauth
                 </div>
             @endif
@@ -83,6 +79,17 @@
                 <div class="title m-b-md">
                     demo_upvs
                 </div>
+                <h3>
+                    <p>Tema:6c Užsakymų priemimo ir vykdymo sistema</p>
+                    <p>Administratorius registruoja technikus ir klientus, priskiria jiems užsakymus, mato ar įvykdyti.</p>
+                    <p>Technikas mato jam paskirtus priskirtus užsakymus, atžymi vykdymą.</p>
+                    <p>Klientas pateikia užsakymus, mato savo užsakymų vykdymą.</p>
+                    <p>Papildomai:</p>
+                    <p>Fiksuojamas įvykių laikas.</p>
+                    <p>Administratorius gauna ataskaitas apie įvykdytus pavedimus su jų trukme.</p>
+                    <p>Techikas ir pats gali pasirinkti vykdymui iš esamų nepriskirtų užsakymų.</p>
+                    <p>Administratorius gali pakeisti vykdytoją dar neužbaigta pavedimui.</p>
+                </h3>
             </div>
         </div>
     </body>
