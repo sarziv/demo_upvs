@@ -1,3 +1,6 @@
+@if(Auth::user()->type == "admin")
+@extends('layouts.app')
+@section('content')
 <div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-md-12">
@@ -50,20 +53,6 @@
                                 </div>
                             </div>
                             <div class="card">
-                                <div class="card-header" id="headingFouth">
-                                    <h2 class="mb-0 text-center">
-                                        <button class="btn btn-outline-dark collapsed" type="button" data-toggle="collapse" data-target="#collapseFouth" aria-expanded="false" aria-controls="collapseFouth">
-                                            Bonus: Užsakymo trukmė
-                                        </button>
-                                    </h2>
-                                </div>
-                                <div id="collapseFouth" class="collapse" aria-labelledby="headingFouth" data-parent="#accordionExample">
-                                    <div class="card-body">
-                                        @include('layouts.admin.adminPanel.adminTime')
-                                   </div>
-                                </div>
-                            </div>
-                            <div class="card">
                                 <div class="card-header" id="headingFifth">
                                     <h2 class="mb-0 text-center">
                                         <button class="btn btn-outline-dark collapsed" type="button" data-toggle="collapse" data-target="#collapseFifth" aria-expanded="false" aria-controls="collapseFifth">
@@ -84,3 +73,7 @@
         </div>
     </div>
 </div>
+@endsection
+@else
+    @include('layouts.unauthorized')
+@endif

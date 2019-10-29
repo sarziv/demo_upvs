@@ -15,10 +15,19 @@ class AdminController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-
         if (Auth::user()['type'] !== 'admin') {
             redirect('/home');
         }
+
+    }
+
+    public function index(){
+        return view('layouts.admin.adminHome',
+            [
+                'orders' => $this->assign()['orders'],
+                'techs' => $this->assign()['techs'],
+                'processOrders' => $this->process()['processOrders']
+            ]);
     }
 
     public function register(UserRegisterRequest $request)
@@ -31,17 +40,18 @@ class AdminController extends Controller
             'type' => $request->get('type'),
         ]);
         $user->save();
-        return redirect('/home')->with('success', 'Account created!');
+        return redirect('/admin')->with('success', 'Account created!');
     }
 
     public function assign()
     {
         $orders = DB::table('orders')
-            ->leftJoin('order_status', 'orders.order_status_id', '=', 'order_status.id')
-            ->where('order_status_id','<=',1)->get();
+            ->join('order_status', 'orders.order_status_id', '=', 'order_status.id')
+            ->where('order_status_id','=',1)->get();
         $techs = DB::table('users')->where('type','=','tech')->get();
-        return view('home', ['orders' => $orders,'techs' => $techs]);
+        return ['orders' => $orders,'techs' => $techs];
     }
+
     public function assignOrder(Request $request,$orderId){
         $order = Order::findorfail($orderId);
         $validatedData = $request->validate([
@@ -49,6 +59,16 @@ class AdminController extends Controller
         $order->tech_id = $request->get('tech');
         $order->order_status_id = 2;
         $order->save();
-        return redirect('/home')->with('success', 'Order was assigned!');
+        return redirect('/admin')->with('success', 'Order was assigned!');
+    }
+
+    public function process(){
+        $processOrders = DB::table('orders')
+            ->join('order_status', 'orders.order_status_id', '=', 'order_status.id')
+            ->join('users', 'orders.tech_id', '=', 'users.id')
+            ->where('order_status_id','=',3)
+            ->select('order_name','start_time','end_time','name','email','status')
+            ->get();
+        return ['processOrders' => $processOrders];
     }
 }

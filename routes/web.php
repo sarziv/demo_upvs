@@ -17,12 +17,18 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+Route::get('/home','HomeController@index')->name('home');
 
-Route::get('/home', 'HomeController@index')->name('home');
-
+//Admin routes
+Route::get('/admin','AdminController@index')->name('admin.index');
 Route::post('/home/admin/register','AdminController@register')->name('admin.register');
-
-Route::get('/home','AdminController@assign')->name('admin.assign');
-
 Route::post('/home/admin/assign/{orderId}','AdminController@assignOrder')->name('admin.assignOrder');
 
+//Tech routes
+Route::get('/tech','TechController@index')->name('tech.index');
+Route::post('/tech/complete','TechController@assign')->name('tech.assign');
+Route::post('/tech/complete','TechController@create')->name('tech.complete');
+
+//User routes
+Route::get('/user','UserController@index')->name('user.index');
+Route::post('/user/create','UserController@create')->name('user.create');

@@ -1,15 +1,12 @@
-@extends('layouts.app')
-
-@section('content')
-    @switch(Auth::user()->type)
+ @switch(Auth::user()->type)
         @case('user'):
-        @include('layouts.user.userHome')
+        <script>window.location = "/user"</script>
         @break
         @case('admin'):
-        @include('layouts.admin.adminHome')
+        <script>window.location = "/admin"</script>
         @break
-        @case('accountant'):
-        @include('layouts.accountant.techHome')
+        @case('tech'):
+        <script>window.location = "/tech"</script>
         @break
     @endswitch
-@endsection
+
