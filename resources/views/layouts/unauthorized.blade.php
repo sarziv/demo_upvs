@@ -19,9 +19,9 @@
     <div class="notfound">
         <div class="notfound-404">
             <h1>Oops!</h1>
-            <h2>404 - The Page can't be found</h2>
+            <h2>401 - Unauthorized</h2>
         </div>
-        <a href="#">Go TO Homepage</a>
+        <a href="/home">Go TO Homepage</a>
     </div>
 </div>
 </body><!-- This templates was made by Colorlib (https://colorlib.com) -->

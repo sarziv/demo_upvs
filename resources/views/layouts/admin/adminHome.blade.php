@@ -1,6 +1,7 @@
-@if(Auth::user()->type == "admin")
+
 @extends('layouts.app')
 @section('content')
+@if(Auth::user()->type == "admin")
 <div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-md-12">
@@ -73,7 +74,8 @@
         </div>
     </div>
 </div>
-@endsection
 @else
     @include('layouts.unauthorized')
 @endif
+@endsection
+
