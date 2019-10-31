@@ -23,6 +23,20 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="card">
+                                <div class="card-header" id="headingTwo">
+                                    <h2 class="mb-0 text-center">
+                                        <button class="btn btn-outline-dark collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            Užsakymai
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        @include('layouts.user.userPanel.userOrders')
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
