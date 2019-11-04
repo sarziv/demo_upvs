@@ -26,7 +26,8 @@ class AdminController extends Controller
             [
                 'orders' => $this->assign()['orders'],
                 'techs' => $this->assign()['techs'],
-                'processOrders' => $this->process()['processOrders']
+                'processOrders' => $this->process()['processOrders'],
+                'ordersChange'=> $this->change()['ordersChange']
             ]);
     }
 
@@ -72,4 +73,17 @@ class AdminController extends Controller
             ->get();
         return ['processOrders' => $processOrders];
     }
+
+    public function change()
+    {
+        $ordersChange = DB::table('orders')
+            ->leftJoin('order_status', 'orders.order_status_id', '=', 'order_status.id')
+            ->leftJoin('users', 'orders.tech_id', '=', 'users.id')
+            ->whereIn('order_status_id',[2])
+            ->select('orders.id','order_status.status','orders.order_name','users.name')
+            ->get();
+        $techs = DB::table('users')->where('type','=','tech')->get();
+        return ['ordersChange' => $ordersChange];
+    }
+
 }
