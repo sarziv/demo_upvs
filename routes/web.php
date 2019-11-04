@@ -21,13 +21,13 @@ Route::get('/home','HomeController@index')->name('home');
 
 //Admin routes
 Route::get('/admin','AdminController@index')->name('admin.index');
-Route::post('/home/admin/register','AdminController@register')->name('admin.register');
-Route::post('/home/admin/assign/{orderId}','AdminController@assignOrder')->name('admin.assignOrder');
+Route::post('/admin/register','AdminController@register')->name('admin.register');
+Route::post('/admin/assign/{orderId}','AdminController@assignOrder')->name('admin.assignOrder');
 
 //Tech routes
 Route::get('/tech','TechController@index')->name('tech.index');
-Route::post('/tech/complete','TechController@assign')->name('tech.assign');
-Route::post('/tech/complete','TechController@create')->name('tech.complete');
+Route::post('/tech/complete/{assignedId}','TechController@complete')->name('tech.complete');
+Route::post('/tech/assign/{orderId}','TechController@assignOrder')->name('tech.assignOrder');
 
 //User routes
 Route::get('/user','UserController@index')->name('user.index');

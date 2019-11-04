@@ -12,8 +12,9 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
+
             @foreach($orders as $order)
+                <tr>
                 <form method="post" action="{{ route('admin.assignOrder',$order->id) }}">
                     @csrf
                     <th scope="row">{{$order->id}}</th>
