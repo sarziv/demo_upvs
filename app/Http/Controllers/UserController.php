@@ -27,7 +27,6 @@ class UserController extends Controller
     {
         $myOrders = DB::table('orders')
             ->join('order_status', 'orders.order_status_id', '=', 'order_status.id')
-            ->join('users', 'orders.tech_id', '=', 'users.id')
             ->where('user_id', '=', Auth::user()['id'])
             ->select('order_name', 'status')
             ->get();

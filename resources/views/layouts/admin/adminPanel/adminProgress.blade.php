@@ -14,17 +14,23 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
+
             @foreach($processOrders as $order)
+            <tr>
                     <th>{{$order->order_name}}</th>
                     <th>{{$order->name}}</th>
                     <td>{{$order->email}}</td>
                     <td>{{$order->status}}</td>
                     <td>{{$order->start_time}}</td>
                     <td>{{$order->end_time}}</td>
-                    <td>{{
-                    (strtotime($order->end_time)-strtotime($order->start_time)) ." seconds"
-                    }}</td>
+                    <td>
+                        @if(strtotime($order->end_time)-strtotime($order->start_time) == 0)
+                            {{"In-progress"}}
+                        @else
+                            {{strtotime($order->end_time)-strtotime($order->start_time) ." seconds"}}
+                        @endif
+
+                    </td>
                 </form>
             @endforeach
         </tr>

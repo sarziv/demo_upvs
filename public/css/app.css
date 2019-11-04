@@ -11109,6 +11109,15 @@ body {
   margin: 0;
 }
 
+.flash-message {
+  right: 5vw;
+  bottom: 4vh;
+  width: 20vw;
+  height: 5vh;
+  position: fixed;
+  z-index: 9999;
+}
+
 #notfound {
   position: relative;
   height: 100vh;

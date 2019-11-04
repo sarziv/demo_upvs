@@ -61,16 +61,15 @@ class AdminController extends Controller
         $order->tech_id = $request->get('tech');
         $order->order_status_id = 2;
         $order->save();
-        //return redirect('/admin')->with('success', 'Order was assigned!');
+        return redirect('/admin')->with('success', 'Order was assigned!');
     }
 
     public function process(){
         $processOrders = DB::table('orders')
             ->join('order_status', 'orders.order_status_id', '=', 'order_status.id')
             ->join('users', 'orders.tech_id', '=', 'users.id')
-            ->where('order_status_id','=',2)
+            ->whereIn('order_status_id',[2,3])
             ->get();
-        var_dump($processOrders);
         return ['processOrders' => $processOrders];
     }
 }
